@@ -1,12 +1,4 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
-import React from 'react';
+import React, {useState} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -14,17 +6,37 @@ import {
   View,
   Text,
   StatusBar,
+  Button,
 } from 'react-native';
 
 import {
   Header,
-  LearnMoreLinks,
   Colors,
-  DebugInstructions,
-  ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
+import BemaAndroidLib from './BemaAndroidLib'
+
 const App: () => React$Node = () => {
+
+  const [printerState, setPrinertState] = useState('');
+
+  const syncPrint = () => {
+    BemaAndroidLib.findPrinter()
+      .catch(err => console.log({err}));
+    BemaAndroidLib.getPrinterStatus()
+      .then(status => setPrinertState(status))
+      .catch(err => console.log({err}));
+  }
+  const site = 'https://codengage.com'
+  
+  const printText = () => {
+    BemaAndroidLib.imprimirTexto(site).catch(err => console.log({err}))
+  }
+
+  const printQRCode = async () => {
+    return BemaAndroidLib.imprimirQRCode(site).catch(err => console.log({err}))
+  }
+
   return (
     <>
       <StatusBar barStyle="dark-content" />
@@ -32,39 +44,13 @@ const App: () => React$Node = () => {
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
           <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
+            <Button title='Sync Printer' onPress={syncPrint}></Button>
+            <Text>
+              Status: {printerState}
+            </Text>
+            <Button title='print text' onPress={printText}></Button>
+            <Button title='print qrcode' onPress={printQRCode}></Button>
           </View>
         </ScrollView>
       </SafeAreaView>
