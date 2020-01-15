@@ -23,8 +23,8 @@ public class BemaAndroidLibModule extends ReactContextBaseJavaModule {
 
     private Printer printer;
 
-    private synchronized Printer getPrinter(){
-        if(printer == null){
+    private synchronized Printer getPrinter() {
+        if (printer == null) {
             printer = new Printer();
         }
         return printer;
@@ -61,91 +61,177 @@ public class BemaAndroidLibModule extends ReactContextBaseJavaModule {
         }
     }
 
-    //    @ReactMethod
-//    public int CortarParcial() {
-//        return printer.CortarParcial();
-//    }
-//
-//    @ReactMethod
-//    public int CortarTotal() {
-//        return printer.CortarTotal();
-//    }
-//
-//    @ReactMethod
-//    public int AtivarTextoDestaque() {
-//        return printer.AtivarTextoDestaque();
-//    }
-//
-//    @ReactMethod
-//    public int DesativarTextoDestaque() {
-//        return printer.DesativarTextoDestaque();
-//    }
-//
-//    @ReactMethod
-//    public int AtivarTextoItalico() {
-//        return printer.AtivarTextoItalico();
-//    }
-//
-//    @ReactMethod
-//    public int DesativarTextoItalico() {
-//        return printer.DesativarTextoItalico();
-//    }
-//
-//    @ReactMethod
-//    public int ImprimirTextoSublinhado(String texto) {
-//        return printer.ImprimirTextoSublinhado(texto);
-//    }
-//
-//    @ReactMethod
-//    public int AtivarTextoUnderline(int act) {
-//        return printer.AtivarTextoUnderline(act);
-//    }
-//
-//    @ReactMethod
-//    public int AtivarTextoCondensado() {
-//        return printer.AtivarTextoCondensado();
-//    }
-//
-//    @ReactMethod
-//    public int DesativarTextoCondensado() {
-//        return printer.DesativarTextoCondensado();
-//    }
-//
-//    @ReactMethod
-//    public int AtivarTextoExpandido(int act) {
-//        return printer.AtivarTextoExpandido(act);
-//    }
-//
-//    @ReactMethod
-//    public int ImprimirTextoDuplo(String texto) {
-//        return printer.ImprimirTextoDuplo(texto);
-//    }
-//
-//    @ReactMethod
-//    public int AtivarTextoDuplo(int act) {
-//        return printer.AtivarTextoDuplo(act);
-//    }
-//
-//    @ReactMethod
-//    public int AlinharTexto(int act) {
-//        return printer.AlinharTexto(act);
-//    }
-//
-//    @ReactMethod
-//    public int AbrirGaveta() {
-//        return printer.AbrirGaveta();
-//    }
-//
-//    @ReactMethod
-//    public int PrintUserConfiguration() {
-//        return printer.PrintUserConfiguration();
-//    }
-//
-//    @ReactMethod
-//    public int GetPrinterStatusCode() {
-//        return printer.GetPrinterStatusCode();
-//    }
-//
+    @ReactMethod
+    public void cortarParcial(Promise promise) {
+        try {
+            int result = printer.CortarParcial();
+            promise.resolve(result);
+        } catch (Exception ex) {
+            promise.reject(ex);
+        }
+    }
+
+
+    @ReactMethod
+    public void cortarTotal(Promise promise) {
+        try {
+            int result = printer.CortarTotal();
+            promise.resolve(result);
+        } catch (Exception e) {
+            promise.reject(e);
+        }
+    }
+
+    @ReactMethod
+    public void ativarTextoDestaque(Promise promise) {
+        try {
+            int result = printer.AtivarTextoDestaque();
+            promise.resolve(result);
+        } catch (Exception e) {
+            promise.reject(e);
+        }
+    }
+
+    @ReactMethod
+    public void desativarTextoDestaque(Promise promise) {
+        try {
+            int result = printer.DesativarTextoDestaque();
+            promise.resolve(result);
+        } catch (Exception e) {
+            promise.reject(e);
+        }
+    }
+
+    @ReactMethod
+    public void ativarTextoItalico(Promise promise) {
+        try {
+            int result = printer.AtivarTextoItalico();
+            promise.resolve(result);
+        } catch (Exception e) {
+            promise.reject(e);
+        }
+    }
+
+    @ReactMethod
+    public void desativarTextoItalico(Promise promise) {
+        try {
+            int result = printer.DesativarTextoItalico();
+            promise.resolve(result);
+        } catch (Exception ex) {
+            promise.reject(ex);
+        }
+    }
+
+    @ReactMethod
+    public void imprimirTextoSublinhado(String texto, Promise promise) {
+        try {
+            int result = printer.ImprimirTextoSublinhado(texto);
+            promise.resolve(result);
+        } catch (Exception e) {
+            promise.reject(e);
+        }
+    }
+
+    @ReactMethod
+    public void ativarTextoUnderline(int act, Promise promise) {
+        try {
+            int result = printer.AtivarTextoUnderline(act);
+            promise.resolve(result);
+        } catch (Exception e) {
+            promise.reject(e);
+        }
+    }
+
+    @ReactMethod
+    public void ativarTextoCondensado(Promise promise) {
+        try {
+            int result = printer.AtivarTextoCondensado();
+            promise.resolve(result);
+        } catch (Exception e) {
+            promise.reject(e);
+        }
+    }
+
+    @ReactMethod
+    public void desativarTextoCondensado(Promise promise) {
+        try {
+            int result = printer.DesativarTextoCondensado();
+            promise.resolve(result);
+        } catch (Exception e) {
+            promise.reject(e);
+        }
+    }
+
+    @ReactMethod
+    public void ativarTextoExpandido(int act, Promise promise) {
+        try {
+            int result = printer.AtivarTextoExpandido(act);
+            promise.resolve(result);
+        } catch (Exception e) {
+            promise.reject(e);
+        }
+    }
+
+    @ReactMethod
+    public void imprimirTextoDuplo(String texto, Promise promise) {
+        try {
+            int result = printer.ImprimirTextoDuplo(texto);
+            promise.resolve(result);
+        } catch (Exception e) {
+            promise.reject(e);
+        }
+    }
+
+    @ReactMethod
+    public void ativarTextoDuplo(int act, Promise promise) {
+        try {
+            int result = printer.AtivarTextoDuplo(act);
+            promise.resolve(result);
+        } catch (Exception e) {
+            promise.reject(e);
+        }
+    }
+
+    @ReactMethod
+    public void alinharTexto(int act, Promise promise) {
+        try {
+            int result = printer.AlinharTexto(act);
+            promise.resolve(result);
+        } catch (Exception e) {
+            promise.reject(e);
+        }
+    }
+
+    @ReactMethod
+    public void abrirGaveta(Promise promise) {
+        try {
+            int result = printer.AbrirGaveta();
+            promise.resolve(result);
+        } catch (Exception e) {
+            promise.reject(e);
+        }
+    }
+
+    @ReactMethod
+    public void printUserConfiguration(Promise promise) {
+        try {
+            int result = printer.PrintUserConfiguration();
+            promise.resolve(result);
+        } catch (Exception e) {
+            promise.reject(e);
+        }
+    }
+
+    @ReactMethod
+    public void getPrinterStatusCode(Promise promise) {
+        try {
+            int result = printer.GetPrinterStatusCode();
+            promise.resolve(result);
+        } catch (Exception e) {
+            promise.reject(e);
+        }
+    }
+
     @ReactMethod
     public void getPrinterStatus(Promise promise) {
         try {
