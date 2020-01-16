@@ -7,6 +7,7 @@ import {
   Text,
   StatusBar,
   Button,
+  ToastAndroid,
 } from 'react-native';
 
 import {
@@ -20,21 +21,43 @@ const App: () => React$Node = () => {
 
   const [printerState, setPrinertState] = useState('');
 
-  const syncPrint = () => {
-    BemaAndroidLib.findPrinter()
-      .catch(err => console.log({err}));
-    BemaAndroidLib.getPrinterStatus()
-      .then(status => setPrinertState(status))
-      .catch(err => console.log({err}));
-  }
   const site = 'https://codengage.com'
-  
-  const printText = () => {
-    BemaAndroidLib.imprimirTexto(site).catch(err => console.log({err}))
+ 
+  const showSuccess = (msg) => ToastAndroid.showSuccess(msg, ToastAndroid.SHORT);
+  const showError = (e) => {
+    console.error(e)
+    ToastAndroid.showError(e, ToastAndroid.LONG)
+  };
+
+  const syncPrint = async () => {
+   try {
+    await BemaAndroidLib.findPrinter();
+    const state = await BemaAndroidLib.getPrinterStatus()
+    setPrinertState(state) 
+    showSuccess(`status: ${status}`);
+   } catch {
+     showError(e)
+   }
+  }
+
+  const printText = async () => {
+    try {
+     await BemaAndroidLib.imprimirTexto(site)
+     await BemaAndroidLib.cortarTotal()
+     showSuccess("texto impresso!");
+    } catch (e) {
+      showError(e)
+    }
   }
 
   const printQRCode = async () => {
-    return BemaAndroidLib.imprimirQRCode(site).catch(err => console.log({err}))
+   try {
+     await BemaAndroidLib.imprimirQRCode(site)
+     await BemaAndroidLib.cortarTotal()
+     showSuccess("qrcode impresso!");
+   } catch {
+      showError(e)
+   }
   }
 
   return (
