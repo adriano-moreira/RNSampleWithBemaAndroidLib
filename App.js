@@ -23,10 +23,10 @@ const App: () => React$Node = () => {
 
   const site = 'https://codengage.com'
  
-  const showSuccess = (msg) => ToastAndroid.showSuccess(msg, ToastAndroid.SHORT)
+  const showSuccess = (msg) => ToastAndroid.show(msg, ToastAndroid.SHORT)
   const showError = (e) => {
     console.error(e)
-    ToastAndroid.showError(e, ToastAndroid.LONG)
+    ToastAndroid.show(e.message, ToastAndroid.LONG)
   };
 
   const syncPrint = async () => {
