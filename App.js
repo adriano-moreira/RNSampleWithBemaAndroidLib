@@ -13,17 +13,17 @@ import {
 import {
   Header,
   Colors,
-} from 'react-native/Libraries/NewAppScreen';
+} from 'react-native/Libraries/NewAppScreen'
 
 import BemaAndroidLib from './BemaAndroidLib'
 
 const App: () => React$Node = () => {
 
-  const [printerState, setPrinertState] = useState('');
+  const [printerState, setPrinertState] = useState('')
 
   const site = 'https://codengage.com'
  
-  const showSuccess = (msg) => ToastAndroid.showSuccess(msg, ToastAndroid.SHORT);
+  const showSuccess = (msg) => ToastAndroid.showSuccess(msg, ToastAndroid.SHORT)
   const showError = (e) => {
     console.error(e)
     ToastAndroid.showError(e, ToastAndroid.LONG)
@@ -34,7 +34,7 @@ const App: () => React$Node = () => {
     await BemaAndroidLib.findPrinter();
     const state = await BemaAndroidLib.getPrinterStatus()
     setPrinertState(state) 
-    showSuccess(`status: ${status}`);
+    showSuccess(`status: ${status}`)
    } catch {
      showError(e)
    }
@@ -44,7 +44,7 @@ const App: () => React$Node = () => {
     try {
      await BemaAndroidLib.imprimirTexto(site)
      await BemaAndroidLib.cortarTotal()
-     showSuccess("texto impresso!");
+     showSuccess("texto impresso!")
     } catch (e) {
       showError(e)
     }
@@ -54,7 +54,7 @@ const App: () => React$Node = () => {
    try {
      await BemaAndroidLib.imprimirQRCode(site)
      await BemaAndroidLib.cortarTotal()
-     showSuccess("qrcode impresso!");
+     showSuccess("qrcode impresso!")
    } catch {
       showError(e)
    }
