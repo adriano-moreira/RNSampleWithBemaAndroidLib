@@ -26,7 +26,7 @@ const App: () => React$Node = () => {
   const showSuccess = (msg) => ToastAndroid.show(msg, ToastAndroid.SHORT)
   const showError = (e) => {
     console.error(e)
-    ToastAndroid.show(e.message, ToastAndroid.LONG)
+    ToastAndroid.show('error:' + e.message, ToastAndroid.LONG)
   };
 
   const syncPrint = async () => {
